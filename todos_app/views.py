@@ -1,7 +1,16 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.views import LoginView
 from .models import UserTask
 from django.urls import reverse_lazy
+
+
+class Login(LoginView):
+    template_name = 'login.html'
+    redirect_authenticated_user = True
+    
+    def get_success_url(self):
+        return reverse_lazy('task_list')
 
 
 class TaskList(ListView):

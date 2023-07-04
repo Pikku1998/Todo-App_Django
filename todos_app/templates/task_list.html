@@ -1,3 +1,11 @@
+{% if request.user.is_authenticated %}
+    <h2>Hello {{ request.user }}</h2>
+{% else %}
+    <a href="{% url 'login' %}">Login</a>
+{% endif %}
+
+<hr>
+
 <h1>Task List Page</h1>
 
 <a href="{% url 'create_task' %}">Add a Task</a>
