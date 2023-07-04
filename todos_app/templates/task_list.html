@@ -1,0 +1,9 @@
+<h1>Task List Page</h1>
+
+<ul>
+    <!-- object list is default name -->
+    {% for item in object_list %}
+    <li>{{ item.task }}</li>
+    <a href="{% url 'task_detail' item.id %}">detail</a>
+    {% endfor %}
+</ul>
