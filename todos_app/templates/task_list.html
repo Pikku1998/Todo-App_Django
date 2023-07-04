@@ -4,7 +4,8 @@
 
 <ul>
     {% for item in tasklist %}
-    <li>{{ item.task }}</li>
-    <a href="{% url 'task_detail' item.id %}">detail</a>
+        <li>{{ item.task }}</li>
+            <a href="{% url 'task_detail' item.id %}">View</a>
+            <a href="{% url 'update_task' item.id %}">Edit</a>
     {% endfor %}
 </ul>
