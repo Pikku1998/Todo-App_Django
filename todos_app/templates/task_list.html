@@ -11,7 +11,12 @@
 
 <a href="{% url 'create_task' %}">Add a Task</a>
 
+
 <ul>
+    <form method="get">
+        <input type="text" name="search_tasks" value="{{ search_tasks }}">
+        <input type="submit" value="Search">
+    </form>
     {% for item in tasklist %}
         <li>{{ item.task }}</li>
             <a href="{% url 'task_detail' item.id %}">View</a>
