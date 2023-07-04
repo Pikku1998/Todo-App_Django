@@ -1,0 +1,8 @@
+<h1>Add a new task</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+<!-- default name of a form given by django -->
+    <input type="submit" value="Submit">
+</form>

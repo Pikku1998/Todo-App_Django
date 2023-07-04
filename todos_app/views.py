@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from .models import UserTask
+from django.urls import reverse_lazy
 
 
 class TaskList(ListView):
@@ -13,6 +14,15 @@ class TaskDetail(DetailView):
     model = UserTask
     template_name = 'task_detail.html'
     context_object_name = 'taskdetail'
+    
+    
+class CreateTask(CreateView):
+    model = UserTask
+    fields = '__all__'
+    template_name = 'create_task.html'
+    success_url = reverse_lazy('task_list')
+    
+    
     
     
 
