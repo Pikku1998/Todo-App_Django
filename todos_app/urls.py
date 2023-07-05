@@ -3,9 +3,9 @@ from .views import TaskList, TaskDetail, CreateTask, UpdateTask, DeleteTask, Log
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
-    path('', TaskList.as_view(), name='task_list'),
+    path('', Login.as_view(), name='login'),
     path('register', Register.as_view(), name='register'),
-    path('login', Login.as_view(), name='login'),
+    path('tasks', TaskList.as_view(), name='task_list'),
     path('logout', LogoutView.as_view(next_page='login'), name='logout'),
     path('task/<int:pk>', TaskDetail.as_view(), name='task_detail'),
     path('create-task', CreateTask.as_view(), name='create_task'),
