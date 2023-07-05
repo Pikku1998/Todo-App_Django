@@ -35,7 +35,7 @@ DEBUG = env('DEBUG')
 
 DATABASE_URL = env('DATABASE_URL')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
