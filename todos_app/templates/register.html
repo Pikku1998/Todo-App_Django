@@ -5,15 +5,27 @@
 
     <form method="POST">
         {% csrf_token %}
-        <label>{{ form.username.label }}</label>
-        {{ form.username }}
-        <label>{{ form.password1.label }}</label>
-        {{ form.password1 }}
-        <label>{{ form.password2.label }}</label>
-        {{ form.password2 }}
+        <label class="form-label">Username:</label>
+        <input type="text" class="form-control" name="username" required>
+
+        <label class="form-label">Password:</label>
+        <input type="password" class="form-control" name="password1" required>
+
+        <label class="form-label">Password confirmation:</label>
+        <input type="password" class="form-control" name="password2" required>
         <br>
+
         <input class="btn btn-success mt-3" type="submit" value="Register">
     </form>
+    
+    {% if messages %}
+    <div class="alert alert-warning alert-dismissible fade show mt-5" role="alert">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
 
     <p class="d-flex justify-content-center mt-4">Already registered? <a href="{% url 'login' %}">Login here</a></p>
 

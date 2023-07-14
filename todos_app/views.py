@@ -5,8 +5,31 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from .models import UserTask
+from django.contrib.auth.models import User
+from django.contrib import messages
 from django.urls import reverse_lazy
 
+
+def register_view(request):
+    register_page = 'register.html'
+    if request.method == 'POST':
+        username = request.POST['username']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "username already taken. please try with different username.")
+            return render(request, register_page)
+        if password1 != password2:
+            messages.error(request, "Passwords didn't match!! Please try again.")
+            return render(request, register_page)
+        else:
+            User.objects.create_user(username=username, password=password1)
+            messages.info(request, 'Account created successfully, Please login with your credentials.')
+            return redirect('login')
+
+    return render(request, register_page)
+
+# Didn't use Register class-view, we used function-based register view. Below is just for reference purpose.
 class Register(FormView):
     template_name = 'register.html'
     form_class = UserCreationForm
